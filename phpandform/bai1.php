@@ -43,6 +43,13 @@
         margin-left: 25px;
         padding: 4px 12px;
     }
+    body {
+        display: flex;
+        justify-content: center; /* Căn giữa theo chiều ngang */
+        align-items: center; /* Căn giữa theo chiều dọc */
+        height: 100vh; /* Bằng 100% chiều cao màn hình */
+        margin: 0;
+    }
 </style>
 </head>
 
@@ -60,9 +67,9 @@
 ?>
 
 <form method="post" action="bai1.php">
-    <h2>DIỆN TÍCH HÌNH CHỮ NHẬT</h2>
+        <h2>DIỆN TÍCH HÌNH CHỮ NHẬT</h2>
+        <table align="center">
 
-    <table>
         <tr>
             <td>Chiều dài:</td>
             <td>
