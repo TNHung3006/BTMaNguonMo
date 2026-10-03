@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bài tập 8 - Nhập thông tin</title>
+</head>
+<body>
+
+    <form action="config.php" method="POST">
+        <!-- fieldset để tạo khung viền vuông giống mẫu -->
+        <fieldset style="width: 500px;">
+            <legend><b>Enter Your Information</b></legend>
+            <table>
+                <tr>
+                    <td>Fullname</td>
+                    <td><input type="text" name="fullname"></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><input type="text" name="address"></td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td><input type="text" name="phone"></td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>
+                        <!-- Cố tình KHÔNG gán value để khi in ra nó hiện chữ "on" giống hệt ảnh -->
+                        <input type="radio" name="gender" checked> Nam 
+                        <input type="radio" name="gender"> Nữ
+                    </td>
+                </tr>
+                <tr>
+                    <td>Country</td>
+                    <td>
+                        <select name="country">
+                            <option>Việt Nam</option>
+                            <option>Singapore</option>
+                            <option>Mỹ</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Study</td>
+                    <td>
+                        <input type="checkbox" name="study[]"> PHP & MySQL
+                        <input type="checkbox" name="study[]"> ASP.NET
+                        <input type="checkbox" name="study[]"> CCNA
+                        <input type="checkbox" name="study[]"> Security+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Note</td>
+                    <td><textarea name="note" rows="4" cols="40"></textarea></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit">Gửi</button>
+                        <!-- Nút type="reset" để xóa trắng dữ liệu theo yêu cầu "nhấn nút Hủy" -->
+                        <button type="reset">Hủy</button>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+
+</body>
+</html>
