@@ -17,7 +17,7 @@ $query = 'SELECT * FROM khach_hang';
 //3. thực thi câu truy vấn
 $result = mysqli_query($conn, $query);
 if(!$result) die('<br> <b>Query failed</b>');
-// //4. Xử lý dữ liệu trả về
+// //4. Xử lý dữ liệu trả về.
 // if(mysqli_num_rows($result) !=0){
 //     while($row = mysqli_fetch_array($result)){
 //         for($i=0; $i < mysqli_num_fields($result); $i++){
