@@ -61,7 +61,7 @@
     <table>
         <tr>
             <td>Toán: </td>
-            <td><input type="text" name="toan" value="<?php echo $toan ?>" required></td>
+            <td><input type="Number" name="toan" step="0.1" value="<?php echo $toan ?>" required></td>
         </tr>
         <tr>
             <td>Lý: </td>

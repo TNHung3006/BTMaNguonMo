@@ -76,15 +76,25 @@
     if (isset($_POST["tinhTong"])) {
         $daySo = $_POST["daySo"];
         
-        // Mẹo nhỏ: Dùng str_replace để xóa các khoảng trắng thừa 
-        // (đề phòng người dùng nhập "1, 2, 3" có dấu cách)
-        $chuoiDaXuLy = str_replace(" ", "", $daySo);
-        
         // Tách chuỗi dựa vào dấu phẩy và gán vào mảng
-        $mang = explode(",", $chuoiDaXuLy);
+        $mang = explode(",", $daySo);
         
-        // Tính tổng các phần tử của mảng 
-        $tong = array_sum($mang);
+        $hop_le = true;
+        // Chuẩn hóa khoảng trắng và kiểm tra xem có chứa chữ cái hay không
+        for ($i = 0; $i < count($mang); $i++) {
+            $mang[$i] = trim($mang[$i]); // kiểm tra khoảng trắng
+            if (!is_numeric($mang[$i]) && $mang[$i] !== "") {
+                $hop_le = false;
+            }
+        }
+        
+        if ($hop_le == true) {
+            // Tính tổng các phần tử của mảng 
+            $tong = array_sum($mang);
+        } else {
+            // Hiện thông báo lỗi
+            echo "<script>alert('Lỗi: Bạn đã nhập chữ cái! Vui lòng chỉ nhập các con số và dấu phẩy.');</script>";
+        }
     }
 ?>
 

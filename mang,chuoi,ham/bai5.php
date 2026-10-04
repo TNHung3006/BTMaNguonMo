@@ -106,25 +106,39 @@
     // Xử lý khi nhấn nút Thay thế
     if (isset($_POST["btnSubmit"])) {
         $mang_nhap = $_POST["mang_nhap"];
-        $gt_cu = $_POST["gt_cu"];
-        $gt_moi = $_POST["gt_moi"];
+        $gt_cu = trim($_POST["gt_cu"]);
+        $gt_moi = trim($_POST["gt_moi"]);
         
         // Tạo mảng từ dãy các số (dùng explode)
         $mang = explode(",", $mang_nhap);
         
-        // Chuẩn hóa khoảng trắng dư thừa trong mảng (tùy chọn để in ra cho đẹp)
+        $hop_le = true;
+        // Chuẩn hóa khoảng trắng và kiểm tra xem có chứa chữ cái hay không
         for ($i = 0; $i < count($mang); $i++) {
             $mang[$i] = trim($mang[$i]);
+            if (!is_numeric($mang[$i]) && $mang[$i] !== "") {
+                $hop_le = false;
+            }
         }
         
-        // Gọi hàm xuất mảng cũ
-        $mang_cu_str = xuat_mang($mang);
+        // Kiểm tra luôn cả 2 ô Giá trị cũ và Giá trị mới xem có phải là số không
+        if (!is_numeric($gt_cu) || !is_numeric($gt_moi)) {
+            $hop_le = false;
+        }
         
-        // Gọi hàm thay thế 
-        $mang_moi = thay_the($mang, $gt_cu, $gt_moi);
-        
-        // Xuất mảng mới sau khi đã thay thế
-        $mang_moi_str = xuat_mang($mang_moi);
+        if ($hop_le == true) {
+            // Gọi hàm xuất mảng cũ
+            $mang_cu_str = xuat_mang($mang);
+            
+            // Gọi hàm thay thế 
+            $mang_moi = thay_the($mang, $gt_cu, $gt_moi);
+            
+            // Xuất mảng mới sau khi đã thay thế
+            $mang_moi_str = xuat_mang($mang_moi);
+        } else {
+            // Hiện hộp thoại thông báo lỗi
+            echo "<script>alert('Lỗi: Bạn đã nhập chữ cái! Vui lòng chỉ nhập các con số và dấu phẩy.');</script>";
+        }
     }
 ?>
 

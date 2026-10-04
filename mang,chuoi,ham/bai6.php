@@ -119,18 +119,29 @@
         // Tách chuỗi thành mảng
         $mang = explode(",", $mang_nhap);
         
-        // Loại bỏ khoảng trắng dư thừa để thuật toán so sánh chính xác số học
+        $hop_le = true;
+        // Loại bỏ khoảng trắng và kiểm tra xem có chứa chữ cái hay không
         for ($i = 0; $i < count($mang); $i++) {
             $mang[$i] = trim($mang[$i]);
+            
+            // Nếu phần tử không phải là số (và không phải bị rỗng do dư dấu phẩy)
+            if (!is_numeric($mang[$i]) && $mang[$i] !== "") {
+                $hop_le = false;
+            }
         }
         
-        // Gọi hàm sắp xếp
-        $mang_tang_arr = sap_tang($mang);
-        $mang_giam_arr = sap_giam($mang);
-        
-        // Chuyển mảng thành chuỗi để xuất ra TextBox
-        $mang_tang = implode(", ", $mang_tang_arr);
-        $mang_giam = implode(", ", $mang_giam_arr);
+        if ($hop_le == true) {
+            // Gọi hàm sắp xếp
+            $mang_tang_arr = sap_tang($mang);
+            $mang_giam_arr = sap_giam($mang);
+            
+            // Chuyển mảng thành chuỗi để xuất ra TextBox
+            $mang_tang = implode(", ", $mang_tang_arr);
+            $mang_giam = implode(", ", $mang_giam_arr);
+        } else {
+            // Hiển thị thông báo lỗi bằng Javascript Popup
+            echo "<script>alert('Lỗi: Bạn đã nhập chữ cái! Vui lòng chỉ nhập các con số và dấu phẩy.');</script>";
+        }
     }
 ?>
 

@@ -83,24 +83,43 @@
     // Xử lý khi nhấn nút Tìm kiếm
     if (isset($_POST["btnSubmit"])) {
         $mang_nhap = $_POST["mang_nhap"];
-        $so_can_tim = $_POST["so_can_tim"];
+        $so_can_tim = trim($_POST["so_can_tim"]);
         
         // 1. Tách chuỗi và gán vào mảng bằng hàm explode()
         $mang = explode(",", $mang_nhap);
         
-        // 2. Gọi hàm tìm kiếm đã viết
-        $vi_tri = tim_kiem($mang, $so_can_tim);
+        $hop_le = true;
+        // Kiểm tra xem mảng có chứa chữ cái hay không
+        for ($i = 0; $i < count($mang); $i++) {
+            $mang[$i] = trim($mang[$i]);
+            if (!is_numeric($mang[$i]) && $mang[$i] !== "") {
+                $hop_le = false;
+            }
+        }
         
-        // 3. In mảng (Dùng hàm implode theo hướng dẫn)
-        $mang_xuat = implode(", ", $mang);
+        // Kiểm tra ô Số cần tìm xem có phải là số không
+        if (!is_numeric($so_can_tim)) {
+            $hop_le = false;
+        }
         
-        // 4. Kiểm tra kết quả và xuất câu thông báo
-        if ($vi_tri != -1) {
-            // Cộng thêm 1 vì mảng bắt đầu từ 0, nhưng đếm vị trí thực tế thì đếm từ 1
-            $vitri_thu = $vi_tri + 1;
-            $ket_qua = "Tìm thấy $so_can_tim tại vị trí thứ $vitri_thu của mảng";
+        if ($hop_le == true) {
+            // 2. Gọi hàm tìm kiếm đã viết
+            $vi_tri = tim_kiem($mang, $so_can_tim);
+            
+            // 3. In mảng (Dùng hàm implode theo hướng dẫn)
+            $mang_xuat = implode(", ", $mang);
+            
+            // 4. Kiểm tra kết quả và xuất câu thông báo
+            if ($vi_tri != -1) {
+                // Cộng thêm 1 vì mảng bắt đầu từ 0, nhưng đếm vị trí thực tế thì đếm từ 1
+                $vitri_thu = $vi_tri + 1;
+                $ket_qua = "Tìm thấy $so_can_tim tại vị trí thứ $vitri_thu của mảng";
+            } else {
+                $ket_qua = "Không tìm thấy $so_can_tim trong mảng";
+            }
         } else {
-            $ket_qua = "Không tìm thấy $so_can_tim trong mảng";
+            // Hiện hộp thoại thông báo lỗi
+            echo "<script>alert('Lỗi: Bạn đã nhập chữ cái! Vui lòng chỉ nhập các con số và dấu phẩy.');</script>";
         }
     }
 ?>

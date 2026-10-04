@@ -61,7 +61,7 @@
         </tr>
         <tr>
             <td>Bán kính:</td>
-            <td><input type="text" name="banKinh" value="<?php echo $banKinh; ?>"></td>
+            <td><input type="number" name="banKinh" value="<?php echo $banKinh; ?>" step="0.01" required></td>
         </tr>
         <tr>
             <td>Diện tích:</td>
