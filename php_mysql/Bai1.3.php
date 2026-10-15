@@ -131,6 +131,13 @@ $queryCau18 = "SELECT *
               WHERE Trong_luong NOT IN (400, 800, 900)";
 $resultCau18 = mysqli_query($conn, $queryCau18);
 if(!$resultCau18) die("Lỗi câu 18: " . mysqli_errno($conn));
+
+$queryCau19 = "SELECT Ten_sua, Don_gia
+              FROM Sua
+              ORDER BY Don_gia DESC
+              LIMIT 10";
+$resultCau19 = mysqli_query($conn, $queryCau19);
+if(!$resultCau19) die("Lỗi câu 19: " . mysqli_errno($conn));
 ?>
 
 <h3>Câu 1.1</h3>
@@ -542,7 +549,20 @@ if(!$resultCau18) die("Lỗi câu 18: " . mysqli_errno($conn));
 <?php } ?>
 </table>
 
-
+<h3>Câu 1.19</h3>
+<table border="1" style="border-collapse: collapse;" cellpadding = "5">
+    <tr>
+        <th>Tên sữa</th>
+        <th>Đơn giá</th>
+    </tr>
+    <?php while ($row = mysqli_fetch_assoc($resultCau19)) { ?>
+    <tr>
+        
+        <td><?php echo $row["Ten_sua"] ?></td>
+        <td><?php echo $row["Don_gia"] ?></td>
+    </tr>
+<?php } ?>
+</table>
 
 <?php
 mysqli_free_result($resultCau1);
