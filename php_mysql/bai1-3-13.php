@@ -20,7 +20,7 @@
 
         $query = "SELECT *
                 FROM sua
-                WHERE Ma_loai_sua = 'SB' OR Don_gia <= '12000'";
+                WHERE Ma_loai_sua = 'SB' OR Don_gia <= 12000";
         $resault = mysqli_query($conn, $query);
         if(!$resault) die("Lỗi!!!". mysqli_errno($conn));
     ?>
